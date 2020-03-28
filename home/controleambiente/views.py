@@ -24,10 +24,9 @@ def leArquivo(sensor):
 
 
 def home(request):
-    variavel =  "variavel passada"
-    arquivo = (leArquivo("sensor_23"))
-    temp1 = arquivo[0]
-    umid1 = arquivo[1]
+    #arquivo = (leArquivo("sensor_23"))
+    temp1 = 11.1
+    umid1 = 11.2
     #arquivo = (leArquivo("sensor_24"))
     temp2 = 50.0#arquivo[0]
     umid2 = 17.7#arquivo[1]
@@ -37,21 +36,21 @@ def home(request):
     ambiente1 = []
     ambienteN20 = []
     
-    try:
+    #try:
         #ambientes = json.dumps(serializers.serialize('json', Ambiente.objects.all()))
-        ambientes = json.dumps(serializers.serialize('json', Ambiente.objects.order_by('id')[:120]))
-    except:
-        ambientes = 'deupau'
+    #    ambientes = json.dumps(serializers.serialize('json', Ambiente.objects.order_by('id')[:120]))
+    #except:
+    #    ambientes = 'deupau'
     try:
         #ambiente1 = json.dumps(serializers.serialize('json', Ambiente.objects.filter(local_id=1)))
         ambiente1 = json.dumps(serializers.serialize('json', Ambiente.objects.order_by('-id')[:400]))
     except:
         ambiente1 = 'deupau1'
-    try:
-        ambienteN20 = json.dumps(serializers.serialize('json', Ambiente.objects.order_by('-id')[:120]))
-    except Exception as ex:
-        ambienteN20 = 'deupau20' + str(ex)
-    return render(request, 'controleambiente/pessoal.html', {'temp1': temp1, 'umid1': umid1, 'temp2': temp2, 'umid2': umid2, 'arquivo': arquivo, 'ambientes': ambientes,'ambiente1': ambiente1,'ambienteN20': ambienteN20})
+    #try:
+    #    ambienteN20 = json.dumps(serializers.serialize('json', Ambiente.objects.order_by('-id')[:120]))
+    #except Exception as ex:
+    #    ambienteN20 = 'deupau20' + str(ex)
+    return render(request, 'controleambiente/pessoal.html', {'temp1': temp1, 'umid1': umid1, 'temp2': temp2, 'umid2': umid2, 'arquivo': "revisar", 'ambientes': ambientes,'ambiente1': ambiente1,'ambienteN20': ambienteN20})
 
 
 #def home(request):
