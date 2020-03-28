@@ -123,9 +123,7 @@ body {
 <script>
 
 //var ambientes = JSON.parse({{ambientes|safe}})
-var ambiente1 = JSON.parse({{ambiente1|safe}})
-var ambienteN20 = JSON.parse({{ambienteN20|safe}})
-var vetor1 = JSON.parse({{ambiente1|safe}})
+var ambiente = JSON.parse({{ambiente|safe}})
 
 
 //################ valores atuais ##########################
@@ -133,11 +131,16 @@ function inicializacao(){
 
     var lvetor =-1
     var agora = ''
-    lvetor = ambiente1.length
-    agora = ambienteN20[0].fields.data
-
+    lvetor = ambiente.length
+    agora = ambiente[0].fields.data
+    console.log(agora, " ultimo dado")
+    var tempN = ambiente[0].fields.temperatura
+    console.log(tempN, " ultimo dado")
+    console.log((parseFloat(tempN)).toFixed(1))
     $('#horaagora').html(agora)
-    
+    $('#tempn').html(parseFloat(tempN).toFixed(1) + "˚C")
+
+
     console.log(lvetor)
     
      
@@ -146,11 +149,11 @@ var auxY = []
 
 var i = 0;
 
-for (i in ambiente1){
+for (i in ambiente){
         
-    if (ambiente1[i].fields.local == 0){
+    if (ambiente[i].fields.local == 0){
         
-        auxX.push(ambiente1[lvetor-i-1].fields.temperatura)
+        auxX.push(ambiente[lvetor-i-1].fields.temperatura)
         auxY.push(i)      
         
 
@@ -249,7 +252,7 @@ window.onload=inicializacao;
             <div style="margin-top:10px;margin-right:10px;text-align:right"><i class="wi wi-thermometer"></i> </div>
         </div>
         <div class="info" style="float:left;height:50px;width:60%;float:left;position:relative;">
-            <div style="margin-top:10px">{{temp1}}˚C </div>  
+            <div id="tempn" style="margin-top:10px">˚C </div>  
         </div>
         <div class="info" style="float:left;height:50px;width:15%;float:left;position:relative">
             <div style="margin-top:10px;margin-right:10px;text-align:right"><i class="wi wi-humidity"></i></div>

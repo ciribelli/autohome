@@ -33,25 +33,15 @@ def home(request):
     umid2 = 17.7#arquivo[1]
     locals = []
     locals = json.dumps(serializers.serialize('json', Local.objects.all()))
-    ambientes = []
-    ambiente1 = []
-    ambienteN20 = []
+
+    ambiente = []
     
+   
     try:
-        #ambientes = json.dumps(serializers.serialize('json', Ambiente.objects.all()))
-        ambientes = json.dumps(serializers.serialize('json', Ambiente.objects.order_by('id')[:120]))
-    except:
-        ambientes = 'deupau'
-    try:
-        #ambiente1 = json.dumps(serializers.serialize('json', Ambiente.objects.filter(local_id=1)))
-        ambiente1 = json.dumps(serializers.serialize('json', Ambiente.objects.order_by('-id')[:400]))
-    except:
-        ambiente1 = 'deupau1'
-    try:
-        ambienteN20 = json.dumps(serializers.serialize('json', Ambiente.objects.order_by('-id')[:120]))
+        ambiente = json.dumps(serializers.serialize('json', Ambiente.objects.order_by('-id')[:120]))
     except Exception as ex:
-        ambienteN20 = 'deupau20' + str(ex)
-    return render(request, 'controleambiente/pessoal.html', {'temp1': temp1, 'umid1': umid1, 'temp2': temp2, 'umid2': umid2, 'arquivo': "opa", 'ambientes': ambientes,'ambiente1': ambiente1,'ambienteN20': ambienteN20})
+        ambiente = 'deupau20' + str(ex)
+    return render(request, 'controleambiente/pessoal.html', {'temp1': temp1, 'umid1': umid1, 'temp2': temp2, 'umid2': umid2, 'ambiente': ambiente})
 
 
 #def home(request):
