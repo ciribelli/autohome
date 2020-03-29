@@ -144,16 +144,24 @@ function inicializacao(){
     console.log(lvetor)
     
      
-var auxX = []
+var curva1 = []
+var curva2 = []
 var auxY = []
+var auxYY = []
 
 var i = 0;
+
+
 
 for (i in ambiente){
         
     if (ambiente[i].fields.local == 0){   
-        auxX.push(ambiente[lvetor-i-1].fields.temperatura)
+        curva1.push(ambiente[lvetor-i-1].fields.temperatura)
         auxY.push(ambiente[lvetor-i-1].fields.data)      
+    }
+    if (ambiente[i].fields.local == 1){   
+        curva2.push(ambiente[lvetor-i-1].fields.temperatura) 
+        auxYY.push(ambiente[lvetor-i-1].fields.data)  
     }
 
 }
@@ -162,20 +170,28 @@ for (i in ambiente){
 
 var trace1 = {
   x: auxY,
-  y: auxX,
+  y: curva1,
   line: {
       shape: 'spline',
       color: '#537686',
       width: 3,
       },
   mode: 'lines',
-  
-  
+};
+
+var trace2 = {
+  x: auxYY,
+  y: curva2,
+  line: {
+      shape: 'spline',
+      color: 'red',
+      width: 3,
+      },
+  mode: 'lines',
 };
 
 
-
-var data = [ trace1 ];
+var data = [ trace1, trace2 ];
 
 var layout = {
   title:'Temperatura',
