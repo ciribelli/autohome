@@ -151,12 +151,9 @@ var i = 0;
 
 for (i in ambiente){
         
-    if (ambiente[i].fields.local == 0){
-        
+    if (ambiente[i].fields.local == 0){   
         auxX.push(ambiente[lvetor-i-1].fields.temperatura)
-        auxY.push(i)      
-        
-
+        auxY.push(ambiente[lvetor-i-1].fields.data)      
     }
 
 }
@@ -194,7 +191,7 @@ var layout = {
     showgrid: false,
     zeroline: false,
     showline: false,
-    showticklabels: false,
+    showticklabels: true,
     
   },
   yaxis: {
