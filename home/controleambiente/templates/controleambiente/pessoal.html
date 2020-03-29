@@ -139,8 +139,7 @@ function inicializacao(){
     console.log(tempN, " ultimo dado")
     console.log((parseFloat(tempN)).toFixed(1))
     $('#horaagora').html(agora)
-    $('#tempn').html(parseFloat(tempN).toFixed(1) + "˚C")
-    $('#tempm').html(parseFloat(tempM).toFixed(1) + "˚C")
+
 
     console.log(lvetor)
     
@@ -156,19 +155,32 @@ for (y in ambiente){
     console.log(ambiente[y])
 }
 
+var primeiroPonto0 = true
+var primeiroPonto1 = true
 for (i in ambiente){
         
     if (ambiente[i].fields.local == 0){   
         curva1.push(ambiente[lvetor-i-1].fields.temperatura)
-        auxY.push(ambiente[lvetor-i-1].fields.data)      
+        auxY.push(ambiente[lvetor-i-1].fields.data) 
+        if (primeiroPonto0){
+            var tempN = ambiente[lvetor-i-1].fields.temperatura
+            primeiroPonto0 = false
+        }    
+
     }
     if (ambiente[i].fields.local == 1){   
         curva2.push(ambiente[lvetor-i-1].fields.temperatura) 
         auxYY.push(ambiente[lvetor-i-1].fields.data)  
+        if (primeiroPonto1){
+            var tempM = ambiente[lvetor-i-1].fields.temperatura
+            primeiroPonto1 = false
+        }   
     }
 
 }
 
+$('#tempn').html(parseFloat(tempN).toFixed(1) + "˚C")
+$('#tempm').html(parseFloat(tempM).toFixed(1) + "˚C")
 
 
 var trace1 = {
