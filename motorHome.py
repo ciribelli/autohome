@@ -25,12 +25,10 @@ def main():
     GPIO.setmode(GPIO.BOARD)
 
     # Define a GPIO conectada ao pino de dados do sensor
-    pino_sensor1 = 23
-    pino_sensor2 = 23
-    #####################################
-    # ATENCAO!!!!!!!!!!!!!!!!!!!!!!!!
-    # COLOQUEI OS DOIS PINOS EM 23 POIS OS TESTES COM O CABO ETHERNET AINDA NAO DERAM CERTO
-    #####################################
+
+    pino_sensor1 = 23 # escritorio
+    pino_sensor2 = 24 # quarto Maria
+
     listaSensores = [pino_sensor1, pino_sensor2]
     # Informacoes iniciais
     print ("Lendo os valores de temperatura e umidade (ver.2.0)");
@@ -39,13 +37,13 @@ def main():
     while(1):
         
        for pino in listaSensores:
-           f = open('sensor_'+str(pino), 'w')
+           # f = open('sensor_'+str(pino), 'w') # versao nao atualiza os arquivos txt fora do banco
            umid, temp = Adafruit_DHT.read_retry(sensor, pino);
            if umid is not None and temp is not None:
              print ("Sensor " + str(pino) + ": " + "Temperatura = {0:0.2f} Umidade = {1:0.2f}").format(temp, umid);
              conteudo = ("{0:0.2f};{1:0.2f}").format(temp, umid);
-             f.write(conteudo)
-             f.close()
+             # f.write(conteudo) # versao nao atualiza os arquivos txt fora do banco
+             # f.close() # versao nao atualiza os arquivos txt fora do banco
              # data atual
              agora = datetime.datetime.now()
              
