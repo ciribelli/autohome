@@ -162,20 +162,12 @@ for (i in ambiente){
     if (ambiente[i].fields.local == 0){   
         curva1.push(ambiente[lvetor-i-1].fields.temperatura)
         auxY.push(ambiente[lvetor-i-1].fields.data) 
-        if (primeiroPonto0){
-            var tempN = ambiente[lvetor-i-1].fields.temperatura
-            primeiroPonto0 = false
-        }    
         var tempN = ambiente[lvetor-i-1].fields.temperatura
 
     }
     if (ambiente[i].fields.local == 1){   
         curva2.push(ambiente[lvetor-i-1].fields.temperatura) 
         auxYY.push(ambiente[lvetor-i-1].fields.data)  
-        if (primeiroPonto1){
-            var tempM = ambiente[lvetor-i-1].fields.temperatura
-            primeiroPonto1 = false
-        }   
         var tempM = ambiente[lvetor-i-1].fields.temperatura
     }
 
@@ -208,7 +200,7 @@ var trace2 = {
 };
 
 
-var data = [ trace1, trace2 ];
+var data = [ trace1, trace2, ];
 
 var layout = {
   title:'Temperatura',
