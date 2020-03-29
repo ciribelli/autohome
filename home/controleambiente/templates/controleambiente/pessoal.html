@@ -135,11 +135,12 @@ function inicializacao(){
     agora = ambiente[0].fields.data
     console.log(agora, " ultimo dado")
     var tempN = ambiente[0].fields.temperatura
+    var tempM = ambiente[1].fields.temperatura
     console.log(tempN, " ultimo dado")
     console.log((parseFloat(tempN)).toFixed(1))
     $('#horaagora').html(agora)
     $('#tempn').html(parseFloat(tempN).toFixed(1) + "˚C")
-
+    $('#tempm').html(parseFloat(tempM).toFixed(1) + "˚C")
 
     console.log(lvetor)
     
@@ -151,7 +152,9 @@ var auxYY = []
 
 var i = 0;
 
-
+for (y in ambiente){
+    console.log(y)
+}
 
 for (i in ambiente){
         
@@ -297,7 +300,7 @@ window.onload=inicializacao;
             <div style="margin-top:10px;margin-right:10px;text-align:right"><i class="wi wi-thermometer"></i> </div>
         </div>
         <div class="info2" style="float:left;height:50px;width:60%;float:left;position:relative;">
-            <div style="margin-top:10px">{{temp1}}˚C </div>  
+            <div id="tempn" style="margin-top:10px">˚C </div>  
         </div>
         <div class="info2" style="float:left;height:50px;width:15%;float:left;position:relative">
             <div style="margin-top:10px;margin-right:10px;text-align:right"><i class="wi wi-humidity"></i></div>
@@ -316,7 +319,8 @@ window.onload=inicializacao;
 <!--<div id="line_top_x" ></div>-->
 
  
-
+vermelho - escritorio
+azul - quarto tete
 	    
 
 
