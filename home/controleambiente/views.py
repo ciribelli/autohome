@@ -38,7 +38,7 @@ def home(request):
     
    
     try:
-        ambiente = json.dumps(serializers.serialize('json', Ambiente.objects.order_by('-id')[:200]))
+        ambiente = json.dumps(serializers.serialize('json', Ambiente.objects.order_by('-id')[:120]))
     except Exception as ex:
         ambiente = 'deupau20' + str(ex)
     return render(request, 'controleambiente/pessoal.html', {'temp1': temp1, 'umid1': umid1, 'temp2': temp2, 'umid2': umid2, 'ambiente': ambiente})
