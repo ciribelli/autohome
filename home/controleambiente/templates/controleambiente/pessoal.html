@@ -151,24 +151,19 @@ var auxYY = []
 
 var i = 0;
 
-for (y in ambiente){
-    console.log(ambiente[y])
-}
 
-var primeiroPonto0 = true
-var primeiroPonto1 = true
 for (i in ambiente){
         
     if (ambiente[i].fields.local == 0){   
-        curva1.push(ambiente[lvetor-i-1].fields.temperatura)
-        auxY.push(ambiente[lvetor-i-1].fields.data) 
-        var tempM = ambiente[lvetor-i-1].fields.temperatura
+        curva1.push(ambiente[i].fields.temperatura)
+        auxY.push(ambiente[i].fields.data) 
+        var tempM = ambiente[i].fields.temperatura
 
     }
     if (ambiente[i].fields.local == 1){   
-        curva2.push(ambiente[lvetor-i-1].fields.temperatura) 
-        auxYY.push(ambiente[lvetor-i-1].fields.data)  
-        var tempN = ambiente[lvetor-i-1].fields.temperatura
+        curva2.push(ambiente[i].fields.temperatura) 
+        auxYY.push(ambiente[i].fields.data)  
+        var tempN = ambiente[i].fields.temperatura
     }
 
 }
