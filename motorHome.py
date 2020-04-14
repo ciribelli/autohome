@@ -17,7 +17,15 @@ def escreveBanco(caminho, temp, umid, pino, agora):
         conn.execute("""INSERT INTO controleambiente_ambiente (temperatura, umidade, data, local_id) VALUES (?,?,?,?)""", (temp, umid, agora,lid))
         conn.commit()
         conn.close()
-	
+
+def preFiltro(valor):
+        flag = False
+        if (valor > 100.0 or valor < 0.0):
+            flag = False
+        else:
+            flag = True
+        return flag
+
 def main():	
     # Define o tipo de sensor
     sensor = Adafruit_DHT.DHT22
@@ -49,7 +57,8 @@ def main():
              
              # atualiza sqlite3
              caminho = "/home/pi/Projetos/autohome/home/"
-             escreveBanco(caminho, temp, umid, pino, agora)
+             if (preFiltro(temp) and preFiltro(umid)):
+                escreveBanco(caminho, temp, umid, pino, agora)
            else:
              # Mensagem de erro de comunicacao com o sensor
              print("Falha ao ler dados!")
