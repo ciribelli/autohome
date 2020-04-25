@@ -3,6 +3,7 @@ import sqlite3
 import os
 import pandas as pd
 import joblib
+import time
 
 def load_sql(sql_path):
     con = sqlite3.connect(sql_path)
@@ -33,12 +34,14 @@ print(dir_path)
 timeRange1 = 12
 timeRange2 = 20
 
-# Retrives locals and environments registers from db
-env_conditions, locals = load_sql(sql_path)
-
-# Defines the windows to screening data
-svm_model = joblib.load(dir_path + '/svm_model.pkl')
-win_s, win_m, win_l = 12, 20, 60
-
-result = [(i, svm_model.predict(raise_math(i, env_conditions, win_s, win_m, win_l))) for i in locals['id']]
-
+def main(): 
+    while(1):
+        # Retrives locals and environments registers from db
+        env_conditions, locals = load_sql(sql_path)
+        # Defines the windows to screening data
+        svm_model = joblib.load(dir_path + '/svm_model.pkl')
+        win_s, win_m, win_l = 12, 20, 60
+        result = [(i, svm_model.predict(raise_math(i, env_conditions, win_s, win_m, win_l))) for i in locals['id']]
+        print(result)
+        time.sleep(60)
+main()
