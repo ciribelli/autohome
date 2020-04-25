@@ -17,4 +17,4 @@ class Ambiente(models.Model):
     
     
     def __str__(self):
-        return str(self.local.nome) + str(self.data)
+        return str(self.local.nome) + " - " + str(self.data)
