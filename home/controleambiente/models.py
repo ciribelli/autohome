@@ -14,7 +14,14 @@ class Ambiente(models.Model):
     umidade = models.DecimalField(max_digits=8, decimal_places=5)
     data = models.DateTimeField(default=timezone.now)
     local = models.ForeignKey('Local', max_length = 100, on_delete=models.CASCADE, blank=False, default=1)
-    
-    
+
     def __str__(self):
         return str(self.local.nome) + " - " + str(self.data)
+
+class ArcondState(models.Model):
+    onoff = models.IntegerField(blank=True, null=True)
+    local = models.ForeignKey('Local', max_length = 100, on_delete=models.CASCADE, blank=False, default=1)
+    data = models.DateTimeField(default=timezone.now)
+    
+    def __str__(self):
+        return str(self.local.nome) + " - " + str(self.onoff) + " - " + str(self.data)
