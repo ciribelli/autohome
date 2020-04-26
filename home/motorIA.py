@@ -32,6 +32,7 @@ def raise_math(local, env_conditions, win_s, win_m, win_l):
     r_arcon = temp_series.rolling(win_l).mean()[-1:] # real media
     temp_vr = temp_series[-1:]
     n_df_tPredict = pd.DataFrame({'desvio padrao': s_arcon, 'variancia': v_arcon, 'amplitude': a_arcon, 'media real': r_arcon, 'temperatura': temp_vr})
+    print(n_df_tPredict)
     return n_df_tPredict
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
