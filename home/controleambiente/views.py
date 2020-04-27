@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.template import Template, Context
 import math
 from random import *
-from controleambiente.models import Local, Ambiente
+from controleambiente.models import Local, Ambiente, ArcondState
 import json
 from django.core import serializers
 
@@ -41,7 +41,12 @@ def home(request):
         ambiente = json.dumps(serializers.serialize('json', Ambiente.objects.order_by('-id')[:100]))
     except Exception as ex:
         ambiente = 'deupau20' + str(ex)
-    return render(request, 'controleambiente/pessoal.html', {'temp1': temp1, 'umid1': umid1, 'temp2': temp2, 'umid2': umid2, 'ambiente': ambiente})
+
+
+    #arcond = json.dumps(serializers.serialize('json', ArcondState.objects.all().last()))
+    arcond1 = ArcondState.objects.filter(local = 0).last()
+    arcond2 = ArcondState.objects.filter(local = 1).last()
+    return render(request, 'controleambiente/pessoal.html', {'temp1': temp1, 'umid1': umid1, 'temp2': temp2, 'umid2': umid2, 'ambiente': ambiente, 'arcond1': arcond1, 'arcond2': arcond2})
 
 
 #def home(request):

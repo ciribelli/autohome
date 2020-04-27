@@ -124,6 +124,7 @@ body {
 
 //var ambientes = JSON.parse({{ambientes|safe}})
 var ambiente = JSON.parse({{ambiente|safe}})
+//var arcond = JSON.parse({{arcond|safe}})
 
 
 //################ valores atuais ##########################
@@ -139,7 +140,8 @@ function inicializacao(){
     console.log(tempN, " ultimo dado")
     console.log((parseFloat(tempN)).toFixed(1))
     $('#horaagora').html(agora)
-
+//console.log('---------')
+  //  console.log(arcond)
 
     console.log(lvetor)
     
@@ -317,9 +319,17 @@ window.onload=inicializacao;
 <div id="myDiv" style="background-color:rgb(150,150,150);border-radius: 4px;margin:0 auto;height:200px;width:80%;"></div>
 <br>
 
-<!--<div id="line_top_x" ></div>-->
 
- 
+<!--<div id="line_top_x" ></div>-->
+<div class="container" style="color: white";>
+
+ {{ arcond1.local }}
+ {{ arcond1.onoff }}
+ <br>
+ {{ arcond2.local }}
+ {{ arcond2.onoff }}
+
+</div>
 
 </body>
 </html> 
