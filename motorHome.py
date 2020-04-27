@@ -43,25 +43,29 @@ def main():
 
 
     while(1):
-        
-       for pino in listaSensores:
-           # f = open('sensor_'+str(pino), 'w') # versao nao atualiza os arquivos txt fora do banco
-           umid, temp = Adafruit_DHT.read_retry(sensor, pino);
-           if umid is not None and temp is not None:
-             print ("Sensor " + str(pino) + ": " + "Temperatura = {0:0.2f} Umidade = {1:0.2f}").format(temp, umid);
-             conteudo = ("{0:0.2f};{1:0.2f}").format(temp, umid);
-             # f.write(conteudo) # versao nao atualiza os arquivos txt fora do banco
-             # f.close() # versao nao atualiza os arquivos txt fora do banco
-             # data atual
-             agora = datetime.datetime.now()
-             
-             # atualiza sqlite3
-             caminho = "/home/pi/Projetos/autohome/home/"
-             if (preFiltro(temp) and preFiltro(umid)):
-                escreveBanco(caminho, temp, umid, pino, agora)
-           else:
-             # Mensagem de erro de comunicacao com o sensor
-             print("Falha ao ler dados!")
+       
+       try:
+           for pino in listaSensores:
+               # f = open('sensor_'+str(pino), 'w') # versao nao atualiza os arquivos txt fora do banco
+               umid, temp = Adafruit_DHT.read_retry(sensor, pino);
+               if umid is not None and temp is not None:
+                 print ("Sensor " + str(pino) + ": " + "Temperatura = {0:0.2f} Umidade = {1:0.2f}").format(temp, umid);
+                 conteudo = ("{0:0.2f};{1:0.2f}").format(temp, umid);
+                 # f.write(conteudo) # versao nao atualiza os arquivos txt fora do banco
+                 # f.close() # versao nao atualiza os arquivos txt fora do banco
+                 # data atual
+                 agora = datetime.datetime.now()
+                 
+                 # atualiza sqlite3
+                 caminho = "/home/pi/Projetos/autohome/home/"
+                 if (preFiltro(temp) and preFiltro(umid)):
+                    escreveBanco(caminho, temp, umid, pino, agora)
+               else:
+                 # Mensagem de erro de comunicacao com o sensor
+                 print("Falha ao ler dados!")
+       except:
+           print("falha na escrita dos dados")
+           pass
        time.sleep(60)
 
 main()
