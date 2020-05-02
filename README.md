@@ -9,3 +9,5 @@ Temperature and Humidity data aquisition is made every each minute in motorHome.
 
 <h4>motorIA.py</h4>
 Classification routine is made every each minute in motorIA.py. It raises the MLPClassifier available in svm_model.pkl file. This feature is still being developed.
+
+ <img src="smiley.gif" alt="Smiley face" height="42" width="42"> 
