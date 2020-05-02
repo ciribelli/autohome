@@ -6,3 +6,6 @@ To provide a user interface with temperature and humidity trends information for
 
 <h4>motorHome.py</h4>
 Temperature and Humidity data aquisition is made every each minute in motorHome.py. Information is stored in sql database provided by Django server.
+
+<h4>motorIA.py</h4>
+Classification routine is made every each minute in motorIA.py. It raises the MLPClassifier available in svm_model.pkl file. This feature is still being developed.
