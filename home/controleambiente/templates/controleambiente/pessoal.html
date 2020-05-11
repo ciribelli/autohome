@@ -1,261 +1,41 @@
 {% load static %}
-
-
 <!DOCTYPE html>
 <html>
 <head>
-
 <link rel="apple-touch-icon" sizes="57x57" href="{% static "img/favicon/apple-icon-57x57.png" %}">
-<link rel="apple-touch-icon" sizes="60x60" href="{% static "img/favicon/apple-icon-60x60.png" %}">
-<link rel="apple-touch-icon" sizes="72x72" href="{% static "img/favicon/apple-icon-72x72.png" %}">
-<link rel="apple-touch-icon" sizes="76x76" href="{% static "img/favicon/apple-icon-76x76.png" %}">
-<link rel="apple-touch-icon" sizes="114x114" href="{% static "img/favicon/apple-icon-114x114.png" %}">
-<link rel="apple-touch-icon" sizes="120x120" href="{% static "img/favicon/apple-icon-120x120.png" %}">
-<link rel="apple-touch-icon" sizes="144x144" href="{% static "img/favicon/apple-icon-144x144.png" %}">
-<link rel="apple-touch-icon" sizes="152x152" href="{% static "img/favicon/apple-icon-152x152.png" %}">
-<link rel="apple-touch-icon" sizes="180x180" href="{% static "img/favicon/apple-icon-180x180.png" %}">
 <link rel="icon" type="image/png" sizes="192x192"  href="{% static "img/favicon/android-icon-192x192.png" %}">
-<link rel="icon" type="image/png" sizes="32x32" href="{% static "img/favicon/favicon-32x32.png" %}">
-<link rel="icon" type="image/png" sizes="96x96" href="{% static "img/favicon/favicon-96x96.png" %}">
-<link rel="icon" type="image/png" sizes="16x16" href="{% static "img/favicon/favicon-16x16.png" %}">
-<link rel="manifest" href="{% static "img/favicon/manifest.json" %}">
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage" content="{% static "img/ms-icon-144x144.png" %}">
-<meta name="theme-color" content="#ffffff">
-
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Gamja+Flower" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
-
 <link href="{% static "css/weather-icons.min.css" %}" rel="stylesheet" media="screen">
-
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-    <style>
-      .col-sm-3 {
-        font-family: 'Open Sans Condensed', sans-serif;
-        font-size: 30px;
-        display: inline-block
-        
-      }
-      .rowj {
-
-        display: inline-block
-        
-      }
-   
-   
-html, body {
-    height:100%;
-} 
-
-.relogio{
-    font-family: 'Open Sans Condensed', sans-serif;
-        font-size: 14px;
-    color: rgb(150,150,150);
-    position: fixed;
-    top: 0;
-    left: 0;
-    }
-body {
-    background-color: rgb(45,45,45);
-    //background-image: url("/static/img/bgfinal");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-position: left top;
-}
-   
-   
-#rcorners1
-{
-    border-radius: 4px;
-    background: rgba(255, 255, 255, 0.7);
-    margin: 20px; 
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    height: 150px;
-    vertical-align: center;
-}
-
-.row{
-    vertical-align: center;
-    }
-   
-      .texto{
-        font-family: 'Pacifico', cursive;
-        font-size: 30px;
-        display: inline-block  
-          }
-      .info  {
-          
-          font-family: 'Open Sans Condensed', sans-serif;
-          font-size: 20px;
-          color: rgb(255,255,255);
-          vertical-align: middle;
-          
-          }
-        .info2  {
-          
-          font-family: 'Open Sans Condensed', sans-serif;
-          font-size: 20px;
-          color: rgb(100,100,100);
-          vertical-align: middle;
-          
-          }
-      .jumbotron {
-        font-family: 'Gamja Flower', cursive;
-        background-color: #2196F3;
-        color: #000000;
-        vertical-align: baseline;
-        
-      }
-   </style>
-
-<script>
-
-//var ambientes = JSON.parse({{ambientes|safe}})
-var ambiente = JSON.parse({{ambiente|safe}})
-//var arcond = JSON.parse({{arcond|safe}})
-
-
-//################ valores atuais ##########################
-function inicializacao(){
-
-    var lvetor =-1
-    var agora = ''
-    lvetor = ambiente.length
-    agora = ambiente[0].fields.data
-    console.log(agora, " ultimo dado")
-    var tempN = ambiente[0].fields.temperatura
-    var tempM = ambiente[1].fields.temperatura
-    console.log(tempN, " ultimo dado")
-    console.log((parseFloat(tempN)).toFixed(1))
-    $('#horaagora').html(agora)
-//console.log('---------')
-  //  console.log(arcond)
-
-    console.log(lvetor)
-    
-     
-var curva1 = []
-var curva2 = []
-var auxY = []
-var auxYY = []
-
-var i = 0;
-
-
-for (i in ambiente){
-        
-    if (ambiente[i].fields.local == 1){   
-        curva1.push(ambiente[i].fields.temperatura)
-        auxY.push(ambiente[i].fields.data) 
-        var tempN = ambiente[i].fields.temperatura
-
-    }
-    if (ambiente[i].fields.local == 0){   
-        curva2.push(ambiente[i].fields.temperatura) 
-        auxYY.push(ambiente[i].fields.data)  
-        var tempM = ambiente[i].fields.temperatura
-    }
-
-}
-
-$('#tempn').html(parseFloat(tempN).toFixed(1) + "˚C")
-$('#tempm').html(parseFloat(tempM).toFixed(1) + "˚C")
-
-
-var trace1 = {
-  x: auxY,
-  y: curva1,
-  line: {
-      shape: 'linear',
-      color: 'rgb(255,192,203)',
-      width: 3,
-      },
-  mode: 'lines',
-};
-
-var trace2 = {
-  x: auxYY,
-  y: curva2,
-  line: {
-      shape: 'linear',
-      color: '#537686',
-      width: 3,
-      },
-  mode: 'lines',
-};
-
-
-var data = [ trace1, trace2, ];
-
-var layout = {
-  title:'Temperatura',
-  showlegend: false,
-  margin: {
-    autoexpand: false,
-    l: 30,
-    r: 20,
-    t: 40,
-    b: 30
-  },
-  xaxis: {
-    showgrid: false,
-    zeroline: false,
-    showline: false,
-    showticklabels: true,
-    
-  },
-  yaxis: {
-      
-    autorange: true,
-    
-      },
-  font:{
-        family: 'Open Sans Condensed',
-        size: 12,
-        color: 'rgb(220,220,220)'
-      },
-  paper_bgcolor:'rgba(0,0,0,0)',
-  plot_bgcolor:'rgba(0,0,0,0)',
-  
-};
-
-Plotly.newPlot('myDiv', data, layout);
-       
-
-}
-
-window.onload=inicializacao;
-
-
-</script>
-
-<title>Pessoal</title>
-
+<link type="text/css" href="{% static "css/style.css" %}" rel="stylesheet" media="screen">
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script>var ambiente = JSON.parse({{ambiente|safe}})</script>
+<script src="{% static 'js/plot.js' %}"></script>
+<title>AutoHome</title>
 </head>
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <!-- Logo -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'controleambiente:home' %}">AutoHome</a>
+        </div>
+        <!-- last update -->
+        <div class="text-light" id="horaagora">    
+            <p> ultima atualizacao </p>
+            {{ sen1 }}
+        </div>		 
+    </div>
+</nav>
+
 <body>
+    
 
 
 
 
-<!- div para colocar backgroud ########################### ->
-
-<div class="relogio" id="horaagora">
-<p> ultima atualizacao </p>
-</div>		
-{{ sen1 }}
-</div>
 
 <div class="quadro" style="border-radius: 4px;background:cyan;height:100px;width:80%;margin:0 auto;margin-top:40px;">
 
@@ -330,6 +110,13 @@ window.onload=inicializacao;
  {{ arcond2.onoff }}
 
 </div>
+
+<div style="color: cyan;">
+{% for i in room %}
+    <p>{{ i.nome }}</p>
+{% endfor %}
+</div>
+
 
 </body>
 </html> 

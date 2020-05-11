@@ -13,6 +13,9 @@ def teste(request):
     now = str(datetime.datetime.now()) + "  " + "Otavio"
     return HttpResponse(now)
 
+def homenew(request):
+    now = str(datetime.datetime.now()) + "  " + "Otavio"
+    return HttpResponse(now)
 
 def leArquivo(sensor):
     file = open('/home/pi/Projetos/'+sensor, 'r')
@@ -36,17 +39,20 @@ def home(request):
 
     ambiente = []
     
+
+
+    #novo Local
+    room = Local.objects.all()
    
     try:
         ambiente = json.dumps(serializers.serialize('json', Ambiente.objects.order_by('-id')[:100]))
     except Exception as ex:
         ambiente = 'deupau20' + str(ex)
 
-
     #arcond = json.dumps(serializers.serialize('json', ArcondState.objects.all().last()))
     arcond1 = ArcondState.objects.filter(local = 0).last()
     arcond2 = ArcondState.objects.filter(local = 1).last()
-    return render(request, 'controleambiente/pessoal.html', {'temp1': temp1, 'umid1': umid1, 'temp2': temp2, 'umid2': umid2, 'ambiente': ambiente, 'arcond1': arcond1, 'arcond2': arcond2})
+    return render(request, 'controleambiente/pessoal.html', {'temp1': temp1, 'umid1': umid1, 'temp2': temp2, 'umid2': umid2, 'ambiente': ambiente, 'arcond1': arcond1, 'arcond2': arcond2, 'room': room})
 
 
 #def home(request):

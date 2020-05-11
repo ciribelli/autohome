@@ -1,0 +1,18 @@
+body {
+background-color: rgb(45,45,45);
+}
+
+.info  {
+font-family: 'Open Sans Condensed', sans-serif;
+font-size: 20px;
+color: rgb(255,255,255);
+vertical-align: middle;
+}
+
+.info2 {    
+font-family: 'Open Sans Condensed', sans-serif;
+font-size: 20px;
+color: rgb(100,100,100);
+vertical-align: middle;     
+}
+
